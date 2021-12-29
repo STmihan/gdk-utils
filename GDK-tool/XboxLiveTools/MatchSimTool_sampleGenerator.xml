@@ -1,0 +1,25 @@
+<Request>
+  <TitleConfiguration>
+    <sandbox>SLSG.91</sandbox>
+    <scid>27220100-ff39-4d5c-8d29-e045123b0933</scid>
+    <hopper>MatchSim_Sample_Hopper</hopper>
+    <templateName>Integration</templateName>
+  </TitleConfiguration>
+  <giveUpDuration>25</giveUpDuration>
+  <numberOfTickets>2</numberOfTickets>
+  <playersPerTicket>1</playersPerTicket>
+  <timeBetweenTicketsInMs>200</timeBetweenTicketsInMs>
+  <playerAttributes>
+    <attribute type="integer" name="targetRank" min="0" max="50"/>
+    <attribute type="double" name="skill" min="0" max="5"/>
+  </playerAttributes>
+  <ticketAttributes>
+    <attribute type="collection" name="dlcPacks" options="firstPack,secondPack,thirdPack,fourthPack"/>
+    <attribute type="string" name="desiredMap" options="HighRoad,LowRoad,MiddleRoad"/>
+  </ticketAttributes>
+  <QoSAttribute>true</QoSAttribute>
+  <ServerQoSAttribute distributionType="randomPingTime">
+    <server name="server1" minPing="10" maxPing="500" />
+    <server name="server2" minPing="10" maxPing="500" />
+  </ServerQoSAttribute>
+</Request>

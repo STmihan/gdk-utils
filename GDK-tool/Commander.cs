@@ -51,4 +51,34 @@ public class Commander
 
         return output;
     }
+
+    public Process Start(string command)
+    {
+        Process process = Process.Start(new ProcessStartInfo()
+        {
+            FileName = CmdExe,
+            Arguments = BaseArgument + command + " & exit",
+            RedirectStandardOutput = true,
+            CreateNoWindow = true,
+            UseShellExecute = false,
+        })!;
+
+        return process;
+    }
+
+    public (string, bool) LabelCheck(string str)
+    {
+        return str.Contains("Setting environment for using Microsoft Desktop Visual Studio") ? (String.Empty, false) : (str, true);
+    }
+
+    public string DeleteLabel(string str)
+    {
+        string[] strings = str.Split("\n");
+        string result = String.Empty;
+        foreach (string s in strings)
+            if (LabelCheck(s).Item2)
+                result += s + "\n";
+
+        return result;
+    }
 }

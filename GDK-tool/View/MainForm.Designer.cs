@@ -1,6 +1,6 @@
-﻿namespace GDK_tool
+﻿namespace GDK_tool.View
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.log = new System.Windows.Forms.TextBox();
             this.getCurrentSanboxButton = new System.Windows.Forms.Button();
             this.currentSandboxLable = new System.Windows.Forms.Label();
@@ -41,17 +42,17 @@
             // 
             // log
             // 
-            this.log.Location = new System.Drawing.Point(477, 12);
+            this.log.Location = new System.Drawing.Point(477, 32);
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(311, 426);
+            this.log.Size = new System.Drawing.Size(311, 406);
             this.log.TabIndex = 0;
             // 
             // getCurrentSanboxButton
             // 
-            this.getCurrentSanboxButton.Location = new System.Drawing.Point(12, 22);
+            this.getCurrentSanboxButton.Location = new System.Drawing.Point(12, 32);
             this.getCurrentSanboxButton.Name = "getCurrentSanboxButton";
             this.getCurrentSanboxButton.Size = new System.Drawing.Size(195, 34);
             this.getCurrentSanboxButton.TabIndex = 1;
@@ -62,7 +63,7 @@
             // currentSandboxLable
             // 
             this.currentSandboxLable.AutoSize = true;
-            this.currentSandboxLable.Location = new System.Drawing.Point(269, 32);
+            this.currentSandboxLable.Location = new System.Drawing.Point(249, 42);
             this.currentSandboxLable.Name = "currentSandboxLable";
             this.currentSandboxLable.Size = new System.Drawing.Size(53, 15);
             this.currentSandboxLable.TabIndex = 2;
@@ -117,7 +118,7 @@
             this.OpenFileDialogButton.UseVisualStyleBackColor = true;
             this.OpenFileDialogButton.Click += new System.EventHandler(this.OpenFileDialogButton_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,8 +131,13 @@
             this.Controls.Add(this.changeSandboxButton);
             this.Controls.Add(this.currentSandboxLable);
             this.Controls.Add(this.getCurrentSanboxButton);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "MainForm";
+            this.ShowInTaskbar = false;
+            this.Text = "GDK-Tool";
             this.ResumeLayout(false);
             this.PerformLayout();
 

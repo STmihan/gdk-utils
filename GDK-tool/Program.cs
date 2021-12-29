@@ -1,3 +1,5 @@
+using GDK_tool.View;
+
 namespace GDK_tool
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace GDK_tool
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

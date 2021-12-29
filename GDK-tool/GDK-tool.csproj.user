@@ -4,7 +4,7 @@
     <_LastSelectedProfileId>D:\Projects\GDK-tool\GDK-tool\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Form1.cs">
+    <Compile Update="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -1,0 +1,101 @@
+﻿<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <!-- Simple Types -->
+  <xsd:simpleType name="Guid">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\{{0,1}[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}{0,1}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="PositiveInt">
+    <xsd:restriction base="xsd:int">
+      <xsd:minInclusive value="1" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="NonNegativeInt">
+    <xsd:restriction base="xsd:int">
+      <xsd:minInclusive value="0" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="NonEmptyString">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1" />
+      <xsd:pattern value=".*[\S][\s\S]*" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="AttributeChoices">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="integer" />
+      <xsd:enumeration value="double" />
+      <xsd:enumeration value="string" />
+      <xsd:enumeration value="collection" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DistributionChoices">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="none" />
+      <xsd:enumeration value="fixed" />
+      <xsd:enumeration value="randomPingTime" />
+      <xsd:enumeration value="randomByDistance" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Complex Types -->
+  <xsd:complexType name="MatchAttribute">
+    <xsd:attribute name="type" type="AttributeChoices" use="required" />
+    <xsd:attribute name="name" type="NonEmptyString" use="required" />
+    <xsd:attribute name="min" type="xsd:int" use="optional" />
+    <xsd:attribute name="max" type="xsd:int" use="optional" />
+    <xsd:attribute name="options" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="AttributeSet">
+    <xsd:sequence>
+      <xsd:element name="attribute" type="MatchAttribute" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TitleConfiguration">
+    <xsd:sequence>
+      <xsd:element name="sandbox" type="NonEmptyString" />
+      <xsd:element name="scid" type="Guid" />
+      <xsd:element name="hopper" type="NonEmptyString" />
+      <xsd:element name="templateName" type="NonEmptyString" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="serverInfo">
+    <xsd:attribute name="name" type="NonEmptyString" use="required" />
+    <xsd:attribute name="minPing" type="NonNegativeInt" use="optional" />
+    <xsd:attribute name="maxPing" type="NonNegativeInt" use="optional" />
+    <xsd:attribute name="long" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="lat" type="xsd:decimal" use="optional" />
+  </xsd:complexType>
+  
+  <xsd:complexType name="ServerQoSAttribute">
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="server" type="serverInfo"/>
+    </xsd:sequence>
+    <xsd:attribute name="distributionType" type="NonEmptyString" use="required"/>
+  </xsd:complexType>
+
+  <xsd:element name='Request'>
+   <xsd:complexType>
+    <xsd:sequence>
+     <xsd:element name='RandomSeed' type="xsd:int" minOccurs="0" maxOccurs="1"/>
+     <xsd:element name='TitleConfiguration' type="TitleConfiguration"/>
+     <xsd:element name="giveUpDuration" type="NonNegativeInt" />
+     <xsd:element name="numberOfTickets" type="PositiveInt" />
+     <xsd:element name="playersPerTicket" type="PositiveInt" />
+     <xsd:element name="timeBetweenTicketsInMs" type="NonNegativeInt" />
+     <xsd:element name="playerAttributes" type="AttributeSet"/>
+     <xsd:element name="ticketAttributes" type="AttributeSet"/>
+     <xsd:element name="QoSAttribute" type="xsd:boolean"/>
+     <xsd:element name="ServerQoSAttribute" type="ServerQoSAttribute"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
